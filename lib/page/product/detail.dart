@@ -27,7 +27,7 @@ class ProductDetail extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 ExtendedImage.network(
-                  _detail["logo"],
+                  _detail["logo"] + ".xs.jpg",
                   cache: true,
                   width: 58,
                   height: 58,
@@ -66,7 +66,7 @@ class ProductDetail extends StatelessWidget {
             children: ((_detail["recent_follow_list"] as List<dynamic>)
                 .map<Widget>((user) {
               return ExtendedImage.network(
-                user["userAvatar"],
+                user["userAvatar"] + ".xs.jpg",
                 cache: true,
                 shape: BoxShape.circle,
                 width: 24,
@@ -171,13 +171,15 @@ class ProductDetail extends StatelessWidget {
     final height = getImageSizeFromUrl(covers[0]).height;
     return CarouselSlider.builder(
       itemCount: covers.length,
-      viewportFraction: 1.0,
-      autoPlay: false,
-      height: height > 300 ? 300 : height,
+      options: CarouselOptions(
+        viewportFraction: 1.0,
+        autoPlay: false,
+        height: height > 300 ? 300 : height,
+      ),
       itemBuilder: (final context, final index) {
         return InkWell(
           child: ExtendedImage.network(
-            covers[index],
+            covers[index] + ".s.jpg",
             fit: BoxFit.cover,
             width: double.infinity,
             cache: true,

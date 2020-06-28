@@ -155,7 +155,7 @@ class _UserSpacePageState extends State<UserSpacePage>
                       decoration: BoxDecoration(
                           image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: ExtendedImage.network(_data.cover,
+                        image: ExtendedImage.network(_data.cover + ".s.jpg",
                                 fit: BoxFit.cover)
                             .image,
                       )),

@@ -36,7 +36,9 @@ class TextTitleScrollCardItem extends StatelessWidget {
           width: double.infinity,
           child: MCard(
             child: CarouselSlider(
-              aspectRatio: getImageRatio(source["entities"][0]["pic"]),
+              options: CarouselOptions(
+                aspectRatio: getImageRatio(source["entities"][0]["pic"]),
+              ),
               items: source["entities"].map<Widget>((entity) {
                 return ExtendedImage.network(entity["pic"]);
               }).toList(),

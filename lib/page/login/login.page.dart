@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.only(right: 330.0),
                   child: Stack(fit: StackFit.expand, children: [
                     ExtendedImage.network(
-                      picUrl,
+                      picUrl + ".m.jpg",
                       cache: true,
                       fit: BoxFit.cover,
                     ),

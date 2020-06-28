@@ -231,7 +231,7 @@ class _NotificationListState extends State<NotificationList> {
                         ),
                       )
                     : ExtendedImage.network(
-                        icon,
+                        icon + ".xs.jpg",
                         width: double.infinity,
                         height: double.infinity,
                         shape: BoxShape.circle,

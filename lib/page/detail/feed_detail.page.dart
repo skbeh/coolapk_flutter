@@ -270,7 +270,7 @@ Widget _buildAppBar(
   final tile = ListTile(
     contentPadding: const EdgeInsets.all(0),
     leading: ExtendedImage.network(
-      data["userInfo"]["userSmallAvatar"],
+      data["userInfo"]["userSmallAvatar"] + ".xs.jpg",
       width: kToolbarHeight - 14,
       height: kToolbarHeight - 14,
       shape: BoxShape.circle,

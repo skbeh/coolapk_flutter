@@ -12,7 +12,7 @@ class FeedTypeCover12Content extends StatelessWidget {
       constraints: BoxConstraints(maxHeight: fmh.toDouble()),
       padding: const EdgeInsets.all(0).copyWith(top: 8, bottom: 8),
       child: ExtendedImage.network(
-        source["message_cover"],
+        source["message_cover"] + ".s.jpg",
         cache: true,
         fit: BoxFit.cover,
         width: double.infinity,

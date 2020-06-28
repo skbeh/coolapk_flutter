@@ -240,7 +240,7 @@ class _DrawerUserCardState extends State<DrawerUserCard> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             ExtendedImage.network(
-              UserStore.of(context).loginInfo.userAvatar,
+              UserStore.of(context).loginInfo.userAvatar + ".xs.jpg",
               cache: true,
               filterQuality: FilterQuality.low,
               width: 40,

@@ -13,10 +13,12 @@ class ImageCarouselCard extends StatelessWidget {
     return MCard(
       padding: const EdgeInsets.all(0),
       child: CarouselSlider.builder(
-        aspectRatio: aspectRatio <= 0.0 ? 1 : aspectRatio,
-        viewportFraction: 1.0,
-        autoPlay: true,
-        enableInfiniteScroll: source["entities"].length > 1,
+        options: CarouselOptions(
+          aspectRatio: aspectRatio <= 0.0 ? 1 : aspectRatio,
+          viewportFraction: 1.0,
+          autoPlay: true,
+          enableInfiniteScroll: source["entities"].length > 1,
+        ),
         itemCount: source["entities"].length,
         itemBuilder: (final context, final index) => InkWell(
           onTap: () {},

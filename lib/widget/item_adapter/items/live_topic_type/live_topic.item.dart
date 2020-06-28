@@ -19,7 +19,7 @@ class LiveTopicItem extends StatelessWidget {
             AspectRatio(
               aspectRatio: getImageRatio(source["pic_url"]),
               child: ExtendedImage.network(
-                source["pic_url"],
+                source["pic_url"] + ".s.jpg",
                 shape: BoxShape.rectangle,
                 cache: true,
                 borderRadius:

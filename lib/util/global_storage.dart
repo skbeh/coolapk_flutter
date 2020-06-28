@@ -104,6 +104,7 @@ class GlobalStorage {
       Provider.of<GlobalStorage>(context, listen: listen);
 
   Future<void> _save() async {
+    if (!boxesFile.exists) boxesFile.touchSync();
     await boxesFile.writeAsync(boxes, convertToJsonStr: true);
   }
 

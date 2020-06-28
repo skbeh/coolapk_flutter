@@ -91,7 +91,7 @@ class CoolpicList extends StatelessWidget {
       builder: (context, config, final _) {
         final dataList = config.dataList;
         return SliverWaterfallFlow(
-          gridDelegate: SliverWaterfallFlowDelegate(
+          gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
             crossAxisCount: axisCount <= 0 ? 1 : axisCount,
             crossAxisSpacing: 8,
             mainAxisSpacing: 8,
@@ -103,7 +103,7 @@ class CoolpicList extends StatelessWidget {
               return AspectRatio(
                 aspectRatio: picRatio,
                 child: ExtendedImage.network(
-                  picUrl,
+                  picUrl + ".s.jpg",
                   width: double.infinity,
                   fit: BoxFit.cover,
                   cache: true,

@@ -42,7 +42,7 @@ class XFile {
   String get absolute => p.absolute(path);
   String get relative => p.relative(path);
 
-  // -和+同理.... obj - "../abc"
+  // -和+同理.... obj - "../abc" == obj + "../abc"
   XFile operator -(final dynamic value) {
     return join(value);
   }

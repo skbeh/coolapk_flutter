@@ -3,7 +3,7 @@ import 'package:coolapk_flutter/util/emoji.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:html/dom.dart' as dom;
+import 'package:flutter_html/style.dart';
 
 class HtmlText extends StatelessWidget {
   final String html;
@@ -16,7 +16,7 @@ class HtmlText extends StatelessWidget {
     Key key,
     this.html,
     this.defaultTextStyle,
-    this.shrinkToFit,
+    this.shrinkToFit = true,
     this.linkStyle,
     this.onLinkTap,
     this.renderNewlines,
@@ -25,37 +25,53 @@ class HtmlText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Html(
-      useRichText: false,
+      // useRichText: false,
       data: parseEmoji(html),
-      showImages: true,
+      // showImages: true,
       onLinkTap: onLinkTap ??
           (link) {
             handleOnLinkTap(link, context);
           },
-      renderNewlines: renderNewlines ?? true,
-      shrinkToFit: shrinkToFit,
-      linkStyle: linkStyle ?? TextStyle(color: Theme.of(context).accentColor),
-      defaultTextStyle: defaultTextStyle ?? const TextStyle(fontSize: 15),
-      customRender: (node, child) {
-        if (node is dom.Element) {
-          switch (node.localName) {
-            case "emoji":
-              final img = node.attributes["path"];
-              try {
-                return ExtendedImage.asset(
-                  img,
-                  width: 22,
-                  height: 22,
-                  filterQuality: FilterQuality.medium,
-                );
-              } catch (err) {}
-              break;
-          }
-          if (node.text == "查看更多") {
-            node.text = "";
+      shrinkWrap: shrinkToFit,
+      style: {
+        "a": Style.fromTextStyle(
+          linkStyle ??
+              TextStyle(
+                  color: Theme.of(context).accentColor,
+                  decoration: TextDecoration.none),
+        ),
+        "html": Style.fromTextStyle(
+          defaultTextStyle ?? const TextStyle(fontSize: 15),
+        ).copyWith(
+          whiteSpace:
+              (renderNewlines ?? true) ? WhiteSpace.PRE : WhiteSpace.NORMAL,
+          margin: EdgeInsets.zero,
+          padding: EdgeInsets.zero,
+        ),
+        "body": Style(
+          margin: EdgeInsets.zero,
+          padding: EdgeInsets.zero,
+        ),
+      },
+      customRender: {
+        // "*": (context, child, map, attr) {
+        //   print(attr);
+        //   return child;
+        // },
+        "emoji": (context, child, map, attr) {
+          final img = attr.attributes["path"];
+          print(img);
+          try {
+            return ExtendedImage.asset(
+              img,
+              width: 22,
+              height: 22,
+              filterQuality: FilterQuality.medium,
+            );
+          } catch (err) {
+            return const SizedBox();
           }
         }
-        return null;
       },
     );
   }

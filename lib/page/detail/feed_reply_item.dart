@@ -91,7 +91,7 @@ class _ReplyItemState extends State<ReplyItem> {
               child: GestureDetector(
                 onTap: () => UserSpacePage.entry(context, widget.data.uid),
                 child: ExtendedImage.network(
-                  widget.data.userInfo.userSmallAvatar,
+                  widget.data.userInfo.userSmallAvatar + ".xs.jpg",
                   width: 42,
                   height: 42,
                   shape: BoxShape.circle,
@@ -182,7 +182,7 @@ class _ReplyItemState extends State<ReplyItem> {
           aspectRatio: getImageRatio(widget.data.pic),
           child: Hero(
             tag: widget.data.pic,
-            child: ExtendedImage.network(widget.data.pic),
+            child: ExtendedImage.network(widget.data.pic + ".xs.jpg"),
           ),
         ),
       ),

@@ -11,7 +11,7 @@ Widget buildImageBox1x2(List<dynamic> picArr) {
     childAspectRatio: 2,
     children: picArr.map((pic) {
       return ExtendedImage.network(
-        pic,
+        pic + ".s.jpg",
         cache: true,
         fit: BoxFit.cover,
         filterQuality: FilterQuality.low,
@@ -35,7 +35,7 @@ Widget buildImageBox1x3(List<dynamic> picArr) {
       childAspectRatio: .7,
       children: picArr.map((pic) {
         return ExtendedImage.network(
-          pic,
+          pic + ".s.jpg",
           cache: true,
           fit: BoxFit.cover,
           filterQuality: FilterQuality.low,
@@ -67,7 +67,7 @@ Widget buildIfImageBox(final dynamic source, final BuildContext context,
       case 1:
         if (picArr[0] == "") break;
         picWidget = ExtendedImage.network(
-          picArr[0],
+          picArr[0] + ".s.jpg",
           cache: true,
           fit: BoxFit.cover,
           shape: BoxShape.rectangle,

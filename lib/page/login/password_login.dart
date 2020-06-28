@@ -131,7 +131,7 @@ class _PasswordLoginState extends State<PasswordLogin>
         _captchaUrl = AuthApi.captchaUrl;
       }),
       child: ExtendedImage.network(
-        _captchaUrl,
+        _captchaUrl + ".xs.jpg",
         width: 130,
         cache: true,
         headers: {
