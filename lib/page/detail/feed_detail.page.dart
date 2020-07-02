@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:coolapk_flutter/network/api/main.api.dart';
 import 'package:coolapk_flutter/network/model/reply_data_list.model.dart';
 import 'package:coolapk_flutter/page/collection_list/add_collect.sheet.dart';
+import 'package:coolapk_flutter/page/topic/topic_detail.page.dart';
 import 'package:coolapk_flutter/page/user_space/user_space.page.dart';
 import 'package:coolapk_flutter/store/user.store.dart';
 import 'package:coolapk_flutter/util/anim_page_route.dart';

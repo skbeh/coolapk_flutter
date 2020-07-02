@@ -24,32 +24,43 @@ class ImageSquareScrollCardItem extends StatelessWidget {
               child: AspectRatio(
                 aspectRatio: ratio <= 0 ? 1 : ratio,
                 child: Material(
-                  child: Stack(
-                    children: <Widget>[
-                      ExtendedImage.network(
-                        entity["logo"] ?? entity["pic"] ?? "",
-                        cache: true,
-                        fit: BoxFit.cover,
-                        borderRadius: BorderRadius.circular(8),
-                        shape: BoxShape.rectangle,
-                      ),
-                      // Container(
-                      //   color: Colors.black.withAlpha(30),
-                      // ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          entity["title"],
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                              color: Colors.white,
-                              shadows: [
-                                Shadow(blurRadius: 4, color: Colors.black)
-                              ]),
+                  child: InkWell(
+                    onTap: () {
+                      if (entity['entityType'] == 'topic') {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    TopicDetailPage(tag: entity['title'])));
+                      }
+                    },
+                    child: Stack(
+                      children: <Widget>[
+                        ExtendedImage.network(
+                          entity["logo"] ?? entity["pic"] ?? "",
+                          cache: true,
+                          fit: BoxFit.cover,
+                          borderRadius: BorderRadius.circular(8),
+                          shape: BoxShape.rectangle,
                         ),
-                      ),
-                    ],
+                        // Container(
+                        //   color: Colors.black.withAlpha(30),
+                        // ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            entity["title"],
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                                color: Colors.white,
+                                shadows: [
+                                  Shadow(blurRadius: 4, color: Colors.black)
+                                ]),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

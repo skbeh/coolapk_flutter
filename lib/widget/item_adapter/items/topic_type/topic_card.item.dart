@@ -8,6 +8,12 @@ class TopicCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ListTile(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => TopicDetailPage(tag: source['title'])));
+        },
         leading: ExtendedImage.network(
           source["logo"],
           cache: true,
@@ -20,10 +26,7 @@ class TopicCardItem extends StatelessWidget {
         title: Text(source["title"] ?? ""),
         subtitle: Text(
             "${source["hot_num"]}热度  ${source["commentnum"]}讨论  ${source["follownum"]}关注"),
-        trailing: IconButton(
-          icon: Icon(Icons.arrow_forward),
-          onPressed: () {},
-        ),
+        trailing: Icon(Icons.arrow_forward),
       ),
     );
   }

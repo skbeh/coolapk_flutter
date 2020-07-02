@@ -154,6 +154,7 @@ class DataListConfig with ChangeNotifier {
             _canRefresh = false;
             return false;
           }
+          print(_template);
           return true;
         })) {
           _template = DataListTemplate.Normal;

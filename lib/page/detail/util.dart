@@ -20,6 +20,15 @@ void handleOnLinkTap(String url, final BuildContext context,
             widget: FeedDetailPage(
           feedId: url.replaceAll(RegExp(r'/feed/'), ""),
         )));
+  } else if (url.startsWith(RegExp(r'^/t/'))) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => TopicDetailPage(
+          tag: url.replaceAll("/t/", "").replaceAll(RegExp(r'\?type=([0-9]*)'), "")
+        ),
+      ),
+    );
   } else {
     if ((url.isEmpty)) {
       onEmptyUrl?.call();

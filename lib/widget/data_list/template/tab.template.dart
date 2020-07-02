@@ -107,6 +107,7 @@ class _TabTemplateState extends State<TabTemplate>
 
   Widget _buildTabBar(final BuildContext context, final DataListConfig config) {
     final tabConfigEntity = config.lastOne;
+    if (tabConfigEntity == null)  return const SliverToBoxAdapter(child: SizedBox(),);
     return SliverPersistentHeader(
         pinned: true,
         floating: true,

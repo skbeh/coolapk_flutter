@@ -192,6 +192,7 @@ Widget buildRelationRow(final dynamic source, final BuildContext context) {
           child: InkWell(
             borderRadius: BorderRadius.circular(4),
             onTap: () {
+              // print(entity);
               // TODO: handle this, target -> entity["url"] 可能是/apk/xxx
             },
             child: Padding(
