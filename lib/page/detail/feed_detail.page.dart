@@ -233,6 +233,7 @@ Widget _buildAppBar(
           builder: (context) => ReplyInputBottomSheet(
             targetId: data["entityId"],
             hintText: "楼主",
+            type: ReplyType.feed,
             onReplyDone: onReplyDone,
           ),
         );

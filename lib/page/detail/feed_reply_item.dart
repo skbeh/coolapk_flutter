@@ -27,7 +27,7 @@ class _ReplyItemState extends State<ReplyItem> {
           Navigator.pop(context);
         },
         hintText: widget.data.username,
-        type: ReplyInputType.reply,
+        type: ReplyType.reply,
       ),
     );
   }
@@ -250,7 +250,7 @@ class InReplyItem extends StatelessWidget {
         builder: (context) => ReplyInputBottomSheet(
               targetId: data.rrid,
               hintText: data.username,
-              type: ReplyInputType.reply,
+              type: ReplyType.reply,
               onReplyDone: (row) {
                 onNewReply(row);
                 Navigator.pop(context);

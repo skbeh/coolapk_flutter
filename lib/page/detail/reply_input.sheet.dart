@@ -1,21 +1,16 @@
 part of 'feed_detail.page.dart';
 
-enum ReplyInputType {
-  feed,
-  reply, // 回复某个回复
-}
-
 class ReplyInputBottomSheet extends StatefulWidget {
   final dynamic targetId; //  reply's id or feedid ,rrid
   final String hintText;
-  final ReplyInputType type;
+  final ReplyType type;
   final Function(ReplyDataEntity data) onReplyDone;
   const ReplyInputBottomSheet({
     Key key,
     @required this.targetId,
     this.hintText,
     this.onReplyDone,
-    this.type = ReplyInputType.feed,
+    this.type = ReplyType.feed,
   }) : super(key: key);
 
   @override
@@ -53,7 +48,8 @@ class _ReplyInputBottomSheetState extends State<ReplyInputBottomSheet> {
                         setState(() {});
                         try {
                           final resp = await MainApi.reply(
-                              widget.targetId, _textEditingController.text);
+                              widget.targetId, _textEditingController.text,
+                              type: widget.type);
                           if (resp["data"] != null) {
                             if (widget.onReplyDone != null)
                               widget.onReplyDone(
