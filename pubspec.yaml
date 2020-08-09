@@ -1,7 +1,7 @@
 name: coolapk_flutter
 description: Coolapk Flutter version.
 
-version: 1.0.0+1
+version: 0.2.8
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
