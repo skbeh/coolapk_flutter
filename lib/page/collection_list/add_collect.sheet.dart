@@ -30,7 +30,7 @@ class _AddCollectSheetState extends State<AddCollectSheet> {
     final uid = UserStore.getUserUid(context);
     if (uid == null) {
       // showToLoginSnackBar(context);
-      Toast.show("请先登录哦", context, duration: 2);
+      Toast.show("请先登录哦", textStyle: context, duration: 2);
       // Navigator.pop(context);
       return false;
     }
@@ -72,12 +72,12 @@ class _AddCollectSheetState extends State<AddCollectSheet> {
       final resp = await MainApi.addCollectionItem(widget.targetId, _addList,
           cancelIds: _cancelList);
       if (resp["message"] != null) {
-        Toast.show(resp["message"], context);
+        Toast.show(resp["message"], textStyle: context);
       } else {
         Navigator.of(context).pop(true);
       }
     } catch (err) {
-      Toast.show(err.toString(), context);
+      Toast.show(err.toString(), textStyle: context);
     }
     setState(() {
       inSubmission = false;

@@ -172,7 +172,7 @@ class _FileChooserState extends State<FileChooser> {
                   value: include,
                   onChanged: (value) {
                     if (this._choosed.length >= widget.max && value) {
-                      Toast.show("一次最多选取${widget.max}张", context, duration: 2);
+                      Toast.show("一次最多选取${widget.max}张", textStyle: context, duration: 2);
                       return;
                     }
                     value

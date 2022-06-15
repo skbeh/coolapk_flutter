@@ -125,7 +125,7 @@ class _PasswordLoginState extends State<PasswordLogin>
     );
   }
 
-  Widget _buildCaptcha() {
+  Future<Widget> _buildCaptcha() async {
     return InkWell(
       onTap: () => setState(() {
         _captchaUrl = AuthApi.captchaUrl;
@@ -135,8 +135,8 @@ class _PasswordLoginState extends State<PasswordLogin>
         width: 130,
         cache: true,
         headers: {
-          "cookie": Network.cookieJar
-              .loadForRequest(Uri.parse("https://account.coolapk.com"))
+          "cookie": (await Network.cookieJar
+                  .loadForRequest(Uri.parse("https://account.coolapk.com")))
               .map((cookie) => "${cookie.name}=${cookie.value}")
               .join('; ')
         },
@@ -169,25 +169,28 @@ class _PasswordLoginState extends State<PasswordLogin>
                 return null;
               },
             ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: TextFormField(
-                    autofocus: false,
-                    decoration: InputDecoration(
-                      labelText: "验证码",
-                    ),
-                    maxLines: 1,
-                    onSaved: (newV) => _captcha = newV,
-                    validator: (value) {
-                      if (value.length == 0) return "请输入验证码";
-                      return null;
-                    },
-                  ),
-                ),
-                _buildCaptcha(),
-              ],
-            ),
+            FutureBuilder<Widget>(
+                future: _buildCaptcha(),
+                builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) =>
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: TextFormField(
+                            autofocus: false,
+                            decoration: InputDecoration(
+                              labelText: "验证码",
+                            ),
+                            maxLines: 1,
+                            onSaved: (newV) => _captcha = newV,
+                            validator: (value) {
+                              if (value.length == 0) return "请输入验证码";
+                              return null;
+                            },
+                          ),
+                        ),
+                        snapshot.data ?? const CircularProgressIndicator(),
+                      ],
+                    )),
             const Divider(
               height: 16,
               thickness: 0,
@@ -199,9 +202,11 @@ class _PasswordLoginState extends State<PasswordLogin>
                     style: const TextStyle(color: Colors.red),
                   )
                 : const SizedBox(),
-            OutlineButton(
+            OutlinedButton(
               child: Text("登录"),
-              textColor: Theme.of(context).accentColor,
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                      Theme.of(context).colorScheme.secondary)),
               onPressed: _logging
                   ? null
                   : () {

@@ -3,7 +3,6 @@ import 'package:coolapk_flutter/util/emoji.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
 
 class HtmlText extends StatelessWidget {
   final String html;
@@ -11,7 +10,8 @@ class HtmlText extends StatelessWidget {
   final bool shrinkToFit;
   final bool renderNewlines;
   final TextStyle linkStyle;
-  final Function(String url) onLinkTap;
+  final void Function(String link, RenderContext renderContext,
+      Map<String, String> map, void element) onLinkTap;
   const HtmlText({
     Key key,
     this.html,
@@ -29,7 +29,7 @@ class HtmlText extends StatelessWidget {
       data: parseEmoji(html),
       // showImages: true,
       onLinkTap: onLinkTap ??
-          (link) {
+          (link, renderContext, map, element) {
             handleOnLinkTap(link, context);
           },
       shrinkWrap: shrinkToFit,
@@ -37,7 +37,7 @@ class HtmlText extends StatelessWidget {
         "a": Style.fromTextStyle(
           linkStyle ??
               TextStyle(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   decoration: TextDecoration.none),
         ),
         "html": Style.fromTextStyle(
@@ -53,25 +53,21 @@ class HtmlText extends StatelessWidget {
           padding: EdgeInsets.zero,
         ),
       },
-      customRender: {
+      customRenders: {
         // "*": (context, child, map, attr) {
         //   print(attr);
         //   return child;
         // },
-        "emoji": (context, child, map, attr) {
-          final img = attr.attributes["path"];
+        tagMatcher("emoji"): CustomRender.widget(widget: (context, child) {
+          final img = context.tree.attributes["path"];
           print(img);
-          try {
-            return ExtendedImage.asset(
-              img,
-              width: 22,
-              height: 22,
-              filterQuality: FilterQuality.medium,
-            );
-          } catch (err) {
-            return const SizedBox();
-          }
-        }
+          return ExtendedImage.asset(
+            img,
+            width: 22,
+            height: 22,
+            filterQuality: FilterQuality.medium,
+          );
+        })
       },
     );
   }

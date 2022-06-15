@@ -9,7 +9,7 @@ import 'package:uuid/uuid.dart';
 
 class TokenInterceptors extends InterceptorsWrapper {
   @override
-  Future onRequest(RequestOptions options) {
+  void onRequest(RequestOptions options, RequestInterceptorHandler _) {
     options.headers.addAll({
       "X-App-Id": "com.coolapk.market",
       "X-Requested-With": "XMLHttpRequest",
@@ -21,7 +21,7 @@ class TokenInterceptors extends InterceptorsWrapper {
       "X-App-Token": buildToken(),
       "X-App-Device": buildDeviceStr(), // 会引发一些奇怪的bug
     });
-    return super.onRequest(options);
+    return super.onRequest(options, _);
   }
 
   // @override

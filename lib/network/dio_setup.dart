@@ -19,7 +19,7 @@ class Network {
           Directory(Directory.systemTemp.path + "/coolapk_flutter/.cookies")
             ..createSync(recursive: true);
     }
-    cookieJar = PersistCookieJar(dir: temporaryDir.path);
+    cookieJar = PersistCookieJar(storage: FileStorage(temporaryDir.path));
     _cookieManager = CookieManager(cookieJar);
     return true;
   }

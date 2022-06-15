@@ -58,7 +58,7 @@ class _ReplyInputBottomSheetState extends State<ReplyInputBottomSheet> {
                             throw Exception(resp["message"] ?? "发送失败");
                           }
                         } catch (err) {
-                          Toast.show(err.toString(), context, duration: 2);
+                          Toast.show(err.toString(), textStyle: context, duration: 2);
                         } finally {
                           _doing = false;
                           setState(() {});

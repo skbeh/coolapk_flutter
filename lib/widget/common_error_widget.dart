@@ -41,7 +41,7 @@ class CommonErrorWidget extends StatelessWidget {
                 height: 55,
               ),
             ),
-            OutlineButton(
+            OutlinedButton(
               child: const Text("重试"),
               onPressed: onRetry ?? () {},
             ),

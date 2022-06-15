@@ -35,7 +35,7 @@ class _NotificationListState extends State<NotificationList> {
             await store.fetch();
           } catch (err, stack) {
             debugPrintStack(stackTrace: stack);
-            Toast.show(err.toString(), context, duration: 2);
+            Toast.show(err.toString(), textStyle: context, duration: 2);
           }
           _refreshCtr.finishLoad();
         },
@@ -45,7 +45,7 @@ class _NotificationListState extends State<NotificationList> {
             await store.fetch(refresh: true);
           } catch (err, stack) {
             debugPrintStack(stackTrace: stack);
-            Toast.show(err.toString(), context, duration: 2);
+            Toast.show(err.toString(), textStyle: context, duration: 2);
           }
           _refreshCtr.finishRefresh();
         },

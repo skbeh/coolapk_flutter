@@ -169,7 +169,7 @@ class _TopicFollowButtonState extends State<TopicFollowButton> {
                   setState(() {
                     this.value = _lv;
                   });
-                  Toast.show("操作失败，请重试", context);
+                  Toast.show("操作失败，请重试", textStyle: context);
                 }
               });
             },

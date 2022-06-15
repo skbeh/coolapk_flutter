@@ -55,13 +55,13 @@ class Create_NormalFeedPageState extends State<CreateNormalFeedPage> {
             final resp = await FeedApi.createFeed(
                 message: _fieldCtr.text, cancelToken: cancelToken);
             if (resp["message"] != null) {
-              Toast.show(resp["message"], context, duration: 3);
+              Toast.show(resp["message"], textStyle: context, duration: 3);
               return;
             }
             print(resp);
             Navigator.pop(context, true);
           } catch (err) {
-            Toast.show(err.toString(), context, duration: 3);
+            Toast.show(err.toString(), textStyle: context, duration: 3);
           } finally {
             try {
               Navigator.pop(dialogContent);

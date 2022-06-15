@@ -52,7 +52,7 @@ class _ThumbUpButtonState extends State<ThumbUpButton> {
 
       String message;
       if ((message = resp["message"]) != null) {
-        Toast.show(message, context, duration: 2);
+        Toast.show(message, textStyle: context, duration: 2);
         return;
       }
       final data = resp["data"];

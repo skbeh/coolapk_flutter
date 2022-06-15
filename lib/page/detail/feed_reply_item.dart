@@ -138,7 +138,7 @@ class _ReplyItemState extends State<ReplyItem> {
         HtmlText(
           html: widget.data.message,
           shrinkToFit: true,
-          onLinkTap: (url) => handleOnLinkTap(url, context),
+          onLinkTap: (url, renderContext, map, element) => handleOnLinkTap(url, context),
           defaultTextStyle: Theme.of(context).textTheme.bodyText1,
         ),
         (widget.data.pic?.length ?? 0) > 3
@@ -275,7 +275,7 @@ class InReplyItem extends StatelessWidget {
         child: Container(
           width: double.infinity,
           child: HtmlText(
-            onLinkTap: (url) {
+            onLinkTap: (url, renderContext, map, element) {
               // TODO: handle to user space
               handleOnLinkTap(url, context);
             },

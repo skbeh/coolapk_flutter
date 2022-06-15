@@ -43,7 +43,7 @@ class _UserSpacePageState extends State<UserSpacePage>
       _data = await UserApi.userSpace(uid: widget.uid);
       setState(() {});
     } catch (err) {
-      Toast.show(err.toString(), context, duration: 3);
+      Toast.show(err.toString(), textStyle: context, duration: 3);
     }
   }
 
@@ -52,7 +52,7 @@ class _UserSpacePageState extends State<UserSpacePage>
     try {
       int.tryParse(widget.uid.toString());
     } catch (err) {
-      Toast.show("UID:${widget.uid} 不正确，请重试", context, duration: 3);
+      Toast.show("UID:${widget.uid} 不正确，请重试", textStyle: context, duration: 3);
       super.initState();
       return;
     }

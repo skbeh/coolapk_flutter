@@ -65,10 +65,10 @@ class _FeedType16ContentState extends State<FeedType16Content> {
   vote() async {
     final selectedOpts = this._options.where((opt) => opt.selected);
     if (selectedOpts.length > maxSelectNum) {
-      Toast.show("最多选择${maxSelectNum}个", context, duration: 2);
+      Toast.show("最多选择${maxSelectNum}个", textStyle: context, duration: 2);
       return;
     } else if (selectedOpts.length < minSelectNum) {
-      Toast.show("最少选择${maxSelectNum}个", context, duration: 2);
+      Toast.show("最少选择${maxSelectNum}个", textStyle: context, duration: 2);
       return;
     }
     final resp = await FeedApi.vote(
@@ -76,13 +76,13 @@ class _FeedType16ContentState extends State<FeedType16Content> {
         selectOption: selectedOpts.map<int>((opt) => opt.id).toList(),
         anonymous: this._anonymous);
     if (resp["message"] != null) {
-      Toast.show(resp["message"], context, duration: 2);
+      Toast.show(resp["message"], textStyle: context, duration: 2);
       return;
     }
     setState(() {
       setup(resp["data"]["options"]);
     });
-    Toast.show("投票成功", context);
+    Toast.show("投票成功", textStyle: context);
   }
 
   @override
@@ -166,7 +166,7 @@ class _FeedType16ContentState extends State<FeedType16Content> {
           if (value &&
               this._options.where((opt) => opt.selected).length >=
                   maxSelectNum) {
-            Toast.show("最多选择${maxSelectNum}个", context, duration: 2);
+            Toast.show("最多选择${maxSelectNum}个", textStyle: context, duration: 2);
             return;
           }
           opt.selected = value;

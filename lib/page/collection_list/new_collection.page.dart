@@ -19,7 +19,7 @@ class _NewCollectionPageState extends State<NewCollectionPage> {
       ),
       body: LimitedContainer(
         child: Form(
-          autovalidate: true,
+          autovalidateMode: AutovalidateMode.always,
           child: ListView(
             children: <Widget>[
               Container(

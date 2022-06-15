@@ -1,6 +1,7 @@
 part of 'settings.page.dart';
 
-const _aboutSpamWord = """一、0级用户没有屏蔽名额，每升1级，可以获得3个名额，上限30个名额。
+const _aboutSpamWord =
+    """一、0级用户没有屏蔽名额，每升1级，可以获得3个名额，上限30个名额。
 
 二、「屏蔽板块」「屏蔽用户」「屏蔽关键词」，3种屏蔽类型共用屏蔽名额。
 
@@ -18,7 +19,7 @@ class BlockManageTile extends StatelessWidget {
         UserStore.getUserUid(context) == null
             ? showToLoginSnackBar(context)
             : Navigator.push(context,
-                MaterialPageRoute(builder: (contexxt) => BlockManagePage()));
+                MaterialPageRoute(builder: (context) => BlockManagePage()));
       },
       title: Text("屏蔽管理"),
       trailing: Icon(Icons.chevron_right),
@@ -41,7 +42,7 @@ class BlockManagePageState extends State<BlockManagePage> {
       _spamWordConfig = await MainApi.getSpamWordList();
       setState(() {});
     } catch (err) {
-      Toast.show("获取信息失败", context, duration: 2);
+      Toast.show("获取信息失败", textStyle: context, duration: 2);
     }
   }
 
@@ -149,7 +150,7 @@ class _SpamWordManagePageState extends State<SpamWordManagePage> {
           }));
       return resp["data"] == 1 ? true : false;
     } catch (err) {
-      Toast.show("添加失败:" + err.toString(), context, duration: 2);
+      Toast.show("添加失败:" + err.toString(), textStyle: context, duration: 2);
     }
     return false;
   }
@@ -165,7 +166,7 @@ class _SpamWordManagePageState extends State<SpamWordManagePage> {
           }));
       return resp["data"] == 1 ? true : false;
     } catch (err) {
-      Toast.show("删除失败:" + err.toString(), context, duration: 2);
+      Toast.show("删除失败:" + err.toString(), textStyle: context, duration: 2);
     }
     return false;
   }
@@ -184,7 +185,7 @@ class _SpamWordManagePageState extends State<SpamWordManagePage> {
           }
           return null;
         },
-        autovalidate: true,
+        autovalidateMode: AutovalidateMode.always,
       ),
       actions: [
         FlatButton(
@@ -195,7 +196,7 @@ class _SpamWordManagePageState extends State<SpamWordManagePage> {
           child: Text("确定"),
           onPressed: () async {
             if (_customWord.keys.contains(_ctr.text)) {
-              Toast.show("已有此项", context, duration: 2);
+              Toast.show("已有此项", textStyle: context, duration: 2);
               return;
             }
             await showDialog(
@@ -286,7 +287,7 @@ class _SpamWordManagePageState extends State<SpamWordManagePage> {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(_customWord.values.toList()[index]),
-                  trailing: OutlineButton(
+                  trailing: OutlinedButton(
                     child: Text("删除"),
                     onPressed: () async {
                       await showDialog(
@@ -391,7 +392,9 @@ class _BlockDialogState extends State<BlockDialog> {
     final _param = {
       "user": {
         "add": _blockUser?.selected ?? false
-            ? _blockUser?.name != null ? widget.source["uid"].toString() : ""
+            ? _blockUser?.name != null
+                ? widget.source["uid"].toString()
+                : ""
             : "",
       },
       "node": {
@@ -414,7 +417,7 @@ class _BlockDialogState extends State<BlockDialog> {
       }
       Navigator.pop(context, true);
     } catch (err) {
-      Toast.show(err.message, context, duration: 2);
+      Toast.show(err.message, textStyle: context, duration: 2);
     } finally {
       _doing = false;
       setState(() {});
@@ -484,10 +487,10 @@ class _AddSpamWordDialogState extends State<AddSpamWordDialog> {
             }
           }));
       if (resp["message"] != null) throw Exception(resp["message"]);
-      Toast.show("添加成功", context, duration: 2);
+      Toast.show("添加成功", textStyle: context, duration: 2);
       Navigator.pop(context);
     } catch (err) {
-      Toast.show("添加失败:" + err.message, context, duration: 2);
+      Toast.show("添加失败:" + err.message, textStyle: context, duration: 2);
       _doing = false;
       setState(() {});
     }
@@ -498,13 +501,13 @@ class _AddSpamWordDialogState extends State<AddSpamWordDialog> {
     return AlertDialog(
       title: Text("添加屏蔽关键词"),
       content: TextFormField(
+        autovalidateMode: AutovalidateMode.always,
         validator: (string) {
           if (string.length < 2) {
             return "2-15字";
           }
           return null;
         },
-        autovalidate: true,
         maxLength: 15,
         maxLines: 1,
         controller: _ctr,

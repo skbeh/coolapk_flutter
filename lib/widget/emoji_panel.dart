@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:emoji_picker/emoji_lists.dart' as emojiList;
+import 'package:emoji_picker_flutter/src/emoji_lists.dart' as emojiList;
 
 class EmojiPanel extends StatelessWidget {
   const EmojiPanel({Key key}) : super(key: key);

@@ -17,7 +17,7 @@ class ImageBox extends StatelessWidget {
       bool fileMode = false}) {
     Navigator.push(
       context,
-      TransparentMaterialPageRoute(
+      MaterialPageRoute(
         builder: (_) => ImageBox(
           urls: urls,
           initIndex: initIndex,
@@ -44,7 +44,7 @@ class ImageBox extends StatelessWidget {
         slideAxis: SlideAxis.both,
         resetPageDuration: Duration(milliseconds: 200),
         child: ExtendedImageGesturePageView.builder(
-          controller: PageController(initialPage: initIndex),
+          controller: ExtendedPageController(initialPage: initIndex),
           itemCount: urls.length,
           onPageChanged: (value) {},
           physics: BouncingScrollPhysics(),

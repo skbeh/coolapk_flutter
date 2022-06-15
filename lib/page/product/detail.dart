@@ -176,7 +176,7 @@ class ProductDetail extends StatelessWidget {
         autoPlay: false,
         height: height > 300 ? 300 : height,
       ),
-      itemBuilder: (final context, final index) {
+      itemBuilder: (final context, final index, final _) {
         return InkWell(
           child: ExtendedImage.network(
             covers[index] + ".s.jpg",
@@ -304,7 +304,7 @@ class ProductDetail extends StatelessWidget {
                         fontSize: 38,
                       ),
                     ),
-                    RatingBar(
+                    RatingBar.builder(
                       tapOnlyMode: true,
                       maxRating: 10,
                       minRating: 0,
@@ -366,7 +366,7 @@ class ProductDetail extends StatelessWidget {
                   return Text(
                     _detail["star_${e}_count"].toString(),
                     style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   );
                 }).toList(),
@@ -389,7 +389,7 @@ class ProductDetail extends StatelessWidget {
           Text(
             "酷安评分",
             style: TextStyle(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
@@ -407,7 +407,7 @@ class ProductDetail extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    RatingBar(
+                    RatingBar.builder(
                       tapOnlyMode: true,
                       maxRating: 10,
                       minRating: 0,

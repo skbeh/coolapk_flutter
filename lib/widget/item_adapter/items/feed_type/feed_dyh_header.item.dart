@@ -19,7 +19,7 @@ class FeedByDyhDeaderItem extends StatelessWidget {
         extHeader: InkWell(
           onTap: () {
             // TODO: handle to dyh page
-            Toast.show("施工中", context, duration: 2);
+            Toast.show("施工中", textStyle: context, duration: 2);
           },
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -46,7 +46,8 @@ class FeedByDyhDeaderItem extends StatelessWidget {
                             style: Theme.of(context).textTheme.headline6,
                           ),
                           HtmlText(
-                            onLinkTap: (url) => handleOnLinkTap(url, context),
+                            onLinkTap: (url, renderContext, map, element) =>
+                                handleOnLinkTap(url, context),
                             html: source["dyh_info"]["fromInfo"],
                             defaultTextStyle: TextStyle(
                                 fontSize: 13,

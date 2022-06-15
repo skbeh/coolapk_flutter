@@ -43,7 +43,7 @@ class FeedApi {
         "id": feedId,
       }..addAll(isReply ? {} : {"detail": detail ? 1 : 0}),
     );
-    print(resp.request.path);
+    print(resp.realUri);
     return resp.data;
   }
 

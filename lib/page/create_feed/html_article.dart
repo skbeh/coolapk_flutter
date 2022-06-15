@@ -31,7 +31,7 @@ class _CreateHtmlArticleFeedPageState extends State<CreateHtmlArticleFeedPage> {
     final resp = await FeedApi.createHtmlArticleFeed(
         message: content, title: _titleEditingCtr.text, cover: this._cover);
     if (resp["message"] != null) {
-      Toast.show(resp["message"], context, duration: 3);
+      Toast.show(resp["message"], textStyle: context, duration: 3);
       return;
     }
     print(resp);

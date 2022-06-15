@@ -116,10 +116,10 @@ class FeedItemHeader extends StatelessWidget {
                     }
                     break;
                   case 2:
-                    Toast.show("此功能暂未完成", context);
+                    Toast.show("此功能暂未完成", textStyle: context);
                     break;
                   case 3:
-                    Toast.show("此功能也暂未完成", context);
+                    Toast.show("此功能也暂未完成", textStyle: context);
                     break;
                   case 4:
                     // handleOnLinkTap(source["shareUrl"], context);
@@ -131,8 +131,8 @@ class FeedItemHeader extends StatelessWidget {
                   case 6:
                     final resp =
                         await FeedApi.deleteFeed(feedId: source["entityId"]);
-                    Toast.show(resp["data"] ?? resp["message"], context,
-                        duration: 2);
+                    Toast.show(resp["data"] ?? resp["message"],
+                        textStyle: context, duration: 2);
                     delete?.call(source);
                     break;
                   case 7:
